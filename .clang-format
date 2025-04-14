@@ -1,10 +1,9 @@
 BasedOnStyle: LLVM
 ColumnLimit: 80
-BreakBeforeBraces: Allman
-AllowShortFunctionsOnASingleLine: Empty
 IndentWidth: 2
 TabWidth: 2
 UseTab: Never
+AlignTrailingComments: true
 AlignConsecutiveAssignments: true
 AlignConsecutiveDeclarations: true
 ReflowComments: true
