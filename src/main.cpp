@@ -1,5 +1,5 @@
 /******************************************************************************
- * @file main.c
+ * @file main.cpp
  * @brief Main entry point for the program
  * @author Witty Wizard
  * @date 2025-15-01
@@ -8,10 +8,10 @@
 /******************************************************************************
  * Includes
  ******************************************************************************/
-#include <stdio.h>
+#include <iostream>
 
 int main()
 {
-  printf("Hello, World!\n");
+  std::cout << "Hello, World!" << std::endl;
   return 0;
 }

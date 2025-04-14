@@ -2,18 +2,22 @@
 cmake_minimum_required(VERSION 3.10)
 
 # Project name
-project(NIDAR C)
+project(NIDAR CXX)
 
-# Set C compiler and flags
+# Set compilers
 set(CMAKE_C_COMPILER clang)
+set(CMAKE_CXX_COMPILER clang++)
+
+# Set compiler flags
 set(CMAKE_C_FLAGS "-Wall -Wextra -O2")
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -O2")
 
 # Set the build directory and output executable
 set(BUILD_DIR ${CMAKE_BINARY_DIR}/build)
 set(EXECUTABLE_OUTPUT_PATH ${BUILD_DIR})
 
 # Add the source files
-file(GLOB SRCS "src/*.c")
+file(GLOB SRCS "src/*.cpp")
 
 # Create the executable from source files
 add_executable(NIDAR ${SRCS})
