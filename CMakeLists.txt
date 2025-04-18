@@ -1,32 +1,38 @@
-# Minimum required version of CMake
 cmake_minimum_required(VERSION 3.10)
 
-# Project name
 project(NIDAR CXX)
 
 # Set compilers
 set(CMAKE_C_COMPILER clang)
 set(CMAKE_CXX_COMPILER clang++)
 
-# Set compiler flags
-set(CMAKE_C_FLAGS "-Wall -Wextra -O2")
-set(CMAKE_CXX_FLAGS "-Wall -Wextra -O2")
+# Compiler flags
+set(CMAKE_C_FLAGS "-Wall -Wextra -Werror -O2")
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -Werror -O2")
 
-# Set the build directory and output executable
+# Output build directory
 set(BUILD_DIR ${CMAKE_BINARY_DIR}/build)
 set(EXECUTABLE_OUTPUT_PATH ${BUILD_DIR})
 
-# Add the source files
-file(GLOB SRCS "src/*.cpp")
+# Locate Python 3
+find_package(Python3 3.10 REQUIRED COMPONENTS Interpreter Development)
 
-# Create the executable from source files
+# Add source files
+file(GLOB SRCS "src/*.cpp")
 add_executable(NIDAR ${SRCS})
 
-# Specify the include directories (where header files are)
-target_include_directories(NIDAR PRIVATE src)
+# Include dirs (for your code + Python headers)
+target_include_directories(NIDAR 
+    PRIVATE 
+        src 
+        ${Python3_INCLUDE_DIRS}
+)
 
-# Specify options for cleaning
+# Link Python libs
+target_link_libraries(NIDAR 
+    PRIVATE 
+        ${Python3_LIBRARIES}
+)
+
+# Optional project settings
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT NIDAR)
-
-# Optional: Enable testing or add other CMake features if needed
-# enable_testing()
